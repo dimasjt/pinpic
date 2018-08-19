@@ -11,8 +11,7 @@
         "useBuiltIns": true
       }
     ],
-    "react",
-    "flow"
+    "react"
   ],
   "plugins": [
     "syntax-dynamic-import",
@@ -22,6 +21,16 @@
       {
         "spec": true
       }
-    ]
+    ],
+    ["module-resolver", {
+      "root": [
+        "./app"
+      ],
+      "alias": {
+        "app": "./app/javascript/app",
+        "components": "./app/javascript/app/components",
+        "containers": "./app/javascript/app/containers"
+      }
+    }]
   ]
 }

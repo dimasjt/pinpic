@@ -350,6 +350,7 @@ DEPENDENCIES
   graphql (~> 1.8.7)
   httparty
   instagram_api_client
+  jwt
   listen (>= 3.0.5, < 3.2)
   mongoid
   mongoid-paranoid

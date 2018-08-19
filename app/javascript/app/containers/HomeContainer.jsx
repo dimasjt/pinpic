@@ -1,10 +1,6 @@
-// @flow
-
 import * as React from 'react'
 
-type Props = {}
-
-class HomeContainer extends React.Component<Props> {
+class HomeContainer extends React.Component {
   render() {
     return (
       <div>HomeContainer</div>
