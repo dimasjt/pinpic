@@ -75,5 +75,7 @@ gem 'devise'
 gem 'omniauth-instagram'
 gem 'instagram_api_client'
 gem 'httparty'
+gem 'graphql', '~> 1.8.7'
 
 gem 'bootstrap'
+gem 'graphiql-rails', group: :development
