@@ -2,7 +2,6 @@ module Mutations
   class Register < GraphQL::Schema::Mutation
     # TODO: define return fields
     field :user, Types::UserType, null: true
-    field :errors, [String], null: false
 
     # TODO: define arguments
     argument :email, String, required: true
@@ -12,15 +11,9 @@ module Mutations
     def resolve(args)
       user = User.new(args)
       if user.save
-        {
-          user: user,
-          errors: []
-        }
+        { user: user }
       else
-        {
-          user: nil,
-          errors: user.errors.full_messages
-        }
+        GraphQL::ExecutionError.new user.errors.full_messages.join(', ')
       end
     end
   end

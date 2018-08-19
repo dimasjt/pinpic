@@ -1,6 +1,9 @@
 {
   "name": "pinpic",
   "private": true,
+  "engines": {
+    "node": "9"
+  },
   "scripts": {
     "flow:start": "yarn run flow start",
     "flow:stop": "yarn run flow stop"
