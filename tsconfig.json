@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es6", "dom"],
+    "module": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es5",
+    "jsx": "react",
+    "baseUrl": "./app/javascript/app",
+    "paths": {
+      "@app/*": ["app/javascript/app/*"],
+      "@components/*": ["app/javascript/app/components/*"],
+      "@containers/*": ["app/javascript/app/containers/*"]
+    }
+  },
+  "exclude": [
+    "**/*.spec.ts",
+    "node_modules",
+    "vendor",
+    "public"
+  ],
+  "compileOnSave": false
+}

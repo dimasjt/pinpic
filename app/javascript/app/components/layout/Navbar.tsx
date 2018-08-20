@@ -12,11 +12,11 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap'
 
-type State = {
+interface Props {}
+
+interface State {
   isOpen: boolean
 }
-
-type Props = {}
 
 class AppNavbar extends React.Component<Props, State> {
   constructor(props: any) {

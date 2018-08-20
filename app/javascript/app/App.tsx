@@ -1,11 +1,11 @@
-import React from 'react'
+import * as React from 'react'
 
 import Routes from './Routes'
-import Navbar from 'components/layout/Navbar'
+import Navbar from '@components/layout/Navbar'
 
 const App = () => (
   <div>
-    Layout
+    <Navbar />
     <Routes />
   </div>
 )
