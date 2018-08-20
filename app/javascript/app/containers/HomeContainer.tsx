@@ -1,6 +1,12 @@
 import * as React from 'react'
+import { Query } from 'react-apollo'
+import gql from 'graphql-tag'
 
-class HomeContainer extends React.Component {
+import testFieldQuery from '@app/gql/query/testFieldQuery'
+
+interface Props {}
+
+class HomeContainer extends React.Component<Props> {
   render() {
     return (
       <div>HomeContainer</div>
@@ -8,4 +14,13 @@ class HomeContainer extends React.Component {
   }
 }
 
-export default HomeContainer
+export default (props: Props) => (
+  <Query query={testFieldQuery}>
+    {(apollo) => {
+      console.log(apollo)
+      return (
+        <HomeContainer {...props} />
+      )
+    }}
+  </Query>
+)

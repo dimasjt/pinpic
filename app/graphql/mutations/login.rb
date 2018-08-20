@@ -13,7 +13,7 @@ module Mutations
     def resolve(email:, password:)
       user = User.find_for_database_authentication(email: email)
 
-      if user.valid_password?(password)
+      if user && user&.valid_password?(password)
         { token: user.token }
       else
         GraphQL::ExecutionError.new "Invalid email or password"

@@ -1,9 +1,13 @@
 const { environment } = require('@rails/webpacker')
 
-const typescript =  require('./loaders/typescript')
+// loaders
+const typescript = require('./loaders/typescript')
+const graphql = require('./loaders/graphql')
+
 const customConfig = require('./custom')
 
 environment.loaders.append('typescript', typescript)
+environment.loaders.append('graphql', graphql)
 
 environment.config.merge(customConfig)
 

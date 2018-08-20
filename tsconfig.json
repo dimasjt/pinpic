@@ -13,7 +13,8 @@
     "paths": {
       "@app/*": ["app/javascript/app/*"],
       "@components/*": ["app/javascript/app/components/*"],
-      "@containers/*": ["app/javascript/app/containers/*"]
+      "@containers/*": ["app/javascript/app/containers/*"],
+      "@gql/*": ["app/javascript/app/gql/*"]
     }
   },
   "exclude": [
