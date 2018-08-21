@@ -1,13 +1,15 @@
 class GraphqlController < ActionController::Base
+  include Devise::Controllers::Helpers
+
   skip_before_action :verify_authenticity_token
+  before_action :authentication
 
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: current_user
     }
     result = PinpicSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
@@ -41,5 +43,11 @@ class GraphqlController < ActionController::Base
     logger.error e.backtrace.join("\n")
 
     render json: { error: { message: e.message, backtrace: e.backtrace }, data: {} }, status: 500
+  end
+
+  def authentication
+    return unless request.headers["Authorization"]
+    _, token = request.headers["Authorization"].split(/\s/)
+    @current_user = User.find_by_token(token)
   end
 end

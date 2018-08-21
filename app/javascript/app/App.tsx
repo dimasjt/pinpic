@@ -2,16 +2,15 @@ import * as React from 'react'
 import { ApolloProvider } from 'react-apollo'
 
 import Routes from './Routes'
-import Navbar from '@components/layout/Navbar'
+import { Provider } from '@context/MainContext'
 
 import client from '@gql/client'
 
 const App = () => (
   <ApolloProvider client={client}>
-    <div>
-      <Navbar />
+    <Provider>
       <Routes />
-    </div>
+    </Provider>
   </ApolloProvider>
 )
 

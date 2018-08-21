@@ -14,7 +14,10 @@
       "@app/*": ["app/javascript/app/*"],
       "@components/*": ["app/javascript/app/components/*"],
       "@containers/*": ["app/javascript/app/containers/*"],
-      "@gql/*": ["app/javascript/app/gql/*"]
+      "@gql/*": ["app/javascript/app/gql/*"],
+      "@utils/*": ["app/javascript/app/utils/*"],
+      "@context/*": ["app/javascript/app/context/*"],
+      "@types/*": ["app/javascript/app/types/*"]
     }
   },
   "exclude": [

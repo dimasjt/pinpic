@@ -11,8 +11,11 @@ import {
   Input,
 } from 'reactstrap'
 
+import { withConsumer } from '@context/MainContext'
+
 interface Props {
-  loginAction: any
+  loginUser: any
+  validateToken: any
 }
 
 interface State {
@@ -28,15 +31,15 @@ class LoginCard extends React.Component<Props, State> {
   }
 
   login = () => {
-    const variables = { email: this.state.email, password: this.state.password }
+    const user = { email: this.state.email, password: this.state.password }
 
-    this.props.loginAction({ variables })
-      .then(response => {
-        console.log(response)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    this.props.loginUser(user)
+      // .then(response => {
+      //   console.log(response)
+      // })
+      // .catch(error => {
+      //   console.log(error)
+      // })
   }
 
   onChange = (field: string, value: string): void => {
@@ -75,6 +78,7 @@ class LoginCard extends React.Component<Props, State> {
             </FormGroup>
 
             <Button onClick={this.login}>Login</Button>
+            <Button onClick={this.props.validateToken}>Validate</Button>
           </Form>
         </CardBody>
       </Card>
@@ -82,4 +86,4 @@ class LoginCard extends React.Component<Props, State> {
   }
 }
 
-export default LoginCard
+export default withConsumer(LoginCard)
