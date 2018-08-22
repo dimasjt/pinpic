@@ -45,6 +45,9 @@ class AppNavbar extends React.Component<Props, State> {
                 <NavItemLink to="/login">
                   Login
                 </NavItemLink>
+                <NavItemLink to="/register">
+                  Register
+                </NavItemLink>
                 <LogoutLink />
               </Nav>
             </Collapse>

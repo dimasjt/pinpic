@@ -15,7 +15,9 @@ const client = new ApolloClient({
     }
 
     return Promise.resolve(operation)
-  }
+  },
+  // onError: (error) => {
+  // }
 });
 
 export default client

@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom'
 
 import App from '@app/App'
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '@app/styles'
 
 document.addEventListener('DOMContentLoaded', function() {
   ReactDOM.render(<App />, document.getElementById('root'))
