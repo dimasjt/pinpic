@@ -33,6 +33,7 @@ class RegisterCard extends React.Component<MainContextProps, State> {
     this.props.registerUser(user)
       .then(message => {
         Alert.info(message)
+        this.setState({ email: '', password: '' })
       })
       .catch(errors => {
         this.setState({ errors })

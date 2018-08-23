@@ -10,12 +10,13 @@ import {
   Label,
   Input,
 } from 'reactstrap'
+import Alert from 'react-s-alert'
 
 import { withConsumer } from '@context/MainContext'
+import history from '@utils/history'
 
 interface Props {
   loginUser: any
-  validateToken: any
 }
 
 interface State {
@@ -30,16 +31,18 @@ class LoginCard extends React.Component<Props, State> {
     password: '',
   }
 
-  login = () => {
+  login = (event) => {
+    event.preventDefault()
     const user = { email: this.state.email, password: this.state.password }
 
     this.props.loginUser(user)
-      // .then(response => {
-      //   console.log(response)
-      // })
-      // .catch(error => {
-      //   console.log(error)
-      // })
+      .then(() => {
+        history.push('/dashboard')
+        Alert.success('Login successfully')
+      })
+      .catch(errors => {
+        Alert.error(errors && errors[0].message)
+      })
   }
 
   onChange = (field: string, value: string): void => {
@@ -53,7 +56,7 @@ class LoginCard extends React.Component<Props, State> {
         <CardBody>
           <CardTitle>Login to PinPic</CardTitle>
 
-          <Form>
+          <Form onSubmit={this.login}>
             <FormGroup>
               <Label for="email">Email</Label>
               <Input
@@ -77,8 +80,7 @@ class LoginCard extends React.Component<Props, State> {
               />
             </FormGroup>
 
-            <Button onClick={this.login}>Login</Button>
-            <Button onClick={this.props.validateToken}>Validate</Button>
+            <Button onClick={this.login} type="submit">Login</Button>
           </Form>
         </CardBody>
       </Card>

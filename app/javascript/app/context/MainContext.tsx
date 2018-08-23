@@ -39,11 +39,19 @@ class MainContext extends React.Component<Props, State> {
   }
 
   loginUser = (variables) => {
-    this.props.loginUserMutation({ variables })
-      .then(({ data: { login } }) => {
-        setToken(login.token)
-        this.validateToken()
-      })
+    return new Promise((resolve, reject) => {
+      this.props.loginUserMutation({ variables })
+        .then(({ data: { login: { token, errors } } }) => {
+          if (errors && errors.length) {
+            reject(errors)
+          } else {
+            setToken(token)
+            this.validateToken()
+            resolve(token)
+          }
+        })
+        .catch(error => reject(error))
+    })
   }
 
   registerUser = (variables) => {

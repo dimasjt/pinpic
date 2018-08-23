@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Router, Route } from 'react-router-dom'
 import Alert from 'react-s-alert'
 
 import HomeContainer from '@containers/HomeContainer'
@@ -10,6 +10,7 @@ import Navbar from '@components/layout/Navbar'
 
 import { withConsumer } from '@context/MainContext'
 import { MainContextProps } from '@types'
+import history from '@utils/history'
 
 class Routes extends React.Component<MainContextProps> {
   componentDidMount = () => {
@@ -18,7 +19,7 @@ class Routes extends React.Component<MainContextProps> {
 
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div>
           <Navbar />
 

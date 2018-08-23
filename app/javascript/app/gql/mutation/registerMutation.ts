@@ -7,6 +7,7 @@ mutation register($email: String!, $password: String!) {
     errors {
       message
       attribute
+      type
     }
   }
 }

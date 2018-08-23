@@ -1,9 +1,9 @@
 module Mutations
-  class Login < GraphQL::Schema::Mutation
+  class Login < Mutations::Base
     include Devise::Controllers::SignInOut
     # TODO: define return fields
-    # field :user, Types::UserType, null: false
-    field :token, String, null: false
+    field :token, String, null: true
+    field :errors, [Types::ErrorType], null: true
 
     # TODO: define arguments
     argument :email, String, required: true
@@ -16,7 +16,7 @@ module Mutations
       if user && user&.valid_password?(password)
         { token: user.token }
       else
-        GraphQL::ExecutionError.new "Invalid email or password"
+        { errors: errors_alert(["Email or password is invalid"]) }
       end
     end
   end
