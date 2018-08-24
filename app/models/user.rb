@@ -3,6 +3,8 @@ class User
   include Mongoid::Timestamps
   include Paranoid.new default_scope: true, field: :deleted_at
 
+  mount_uploader :avatar, ::AvatarUploader
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -37,6 +39,8 @@ class User
   field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   field :locked_at,       type: Time
+
+  embeds_many :accounts
 
   def token
     JWT.encode payload, ENV["JWT_SECRET"], "HS256"

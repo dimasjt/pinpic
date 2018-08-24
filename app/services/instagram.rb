@@ -23,7 +23,7 @@ class Instagram
       client_id: ENV["INSTAGRAM_CLIENT_ID"],
       client_secret: ENV["INSTAGRAM_CLIENT_SECRET"],
       grant_type: "authorization_code",
-      redirect_uri: user_instagram_omniauth_callback_url,
+      redirect_uri: omniauth_callback_url,
       code: options[:code]
     }
   end

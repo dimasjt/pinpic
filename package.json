@@ -15,6 +15,7 @@
     "graphql-tag": "^2.9.2",
     "history": "^4.7.2",
     "prop-types": "^15.6.2",
+    "query-string": "^6.1.0",
     "react": "^16.4.2",
     "react-apollo": "^2.1.11",
     "react-dom": "^16.4.2",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "babel-eslint": "^8.2.6",
     "babel-plugin-module-resolver": "^3.1.1",
+    "dotenv-webpack": "^1.5.7",
     "eslint": "^5.4.0",
     "eslint-plugin-react": "^7.11.1",
     "webpack-dev-server": "2.11.2"

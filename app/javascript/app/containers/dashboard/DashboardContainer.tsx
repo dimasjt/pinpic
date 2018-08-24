@@ -1,9 +1,15 @@
 import * as React from 'react'
 
+import LoginInstagram from '@components/account/LoginInstagram'
+
 class DashboardContainer extends React.Component<{}> {
   render() {
     return (
-      <div>Dashboard</div>
+      <div>
+        <h1>Dashboard</h1>
+
+        <LoginInstagram />
+      </div>
     )
   }
 }

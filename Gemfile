@@ -16,9 +16,6 @@ gem 'turbolinks', '~> 5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
@@ -56,9 +53,11 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem 'carrierwave'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+gem 'mini_magick'
+
 gem 'devise'
-gem 'omniauth-instagram'
-gem 'instagram_api_client'
 gem 'httparty'
 gem 'jwt'
 gem 'graphql', '~> 1.8.7'

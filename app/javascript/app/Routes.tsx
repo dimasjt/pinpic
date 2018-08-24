@@ -6,6 +6,7 @@ import HomeContainer from '@containers/HomeContainer'
 import LoginContainer from '@containers/auth/LoginContainer'
 import DashboardContainer from '@containers/dashboard/DashboardContainer'
 import RegisterContainer from '@containers/auth/RegisterContainer'
+import OmniauthCallbackContainer from '@containers/auth/OmniauthCallbackContainer'
 import Navbar from '@components/layout/Navbar'
 
 import { withConsumer } from '@context/MainContext'
@@ -28,6 +29,7 @@ class Routes extends React.Component<MainContextProps> {
             <Route path="/login" component={LoginContainer} />
             <Route path="/register" component={RegisterContainer} />
             <Route path="/dashboard" component={DashboardContainer} />
+            <Route exact path="/omniauth/callback" component={OmniauthCallbackContainer} />
           </div>
 
           <Alert stack={{ limit: 5, effect: 'scale', position: 'top-right', timeout: 5000 }} />
