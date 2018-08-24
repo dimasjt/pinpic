@@ -4,7 +4,7 @@ import { Mutation } from 'react-apollo'
 
 import history from '@utils/history'
 
-class OmniauthCallback extends React.Component {
+class OauthCallbackContainer extends React.Component {
   componentDidMount() {
     const parsed = queryString.parse(location.search)
     history
@@ -19,4 +19,4 @@ class OmniauthCallback extends React.Component {
   }
 }
 
-export default OmniauthCallback
+export default OauthCallbackContainer
