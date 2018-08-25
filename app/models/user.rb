@@ -42,6 +42,8 @@ class User
 
   embeds_many :accounts
 
+  has_many :posts
+
   def token
     JWT.encode payload, ENV["JWT_SECRET"], "HS256"
   end
@@ -58,5 +60,9 @@ class User
       id: id.to_s,
       exp: Time.now.to_i + 24 * 7 * 3600
     )
+  end
+
+  def instagram
+    accounts.where(provider: "instagram").first
   end
 end

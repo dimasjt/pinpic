@@ -10,7 +10,7 @@ module Mutations
 
     # TODO: define resolve method
     def resolve(code:, state:)
-      instagram = Instagram.new(code: code, state: state).access_token
+      instagram = Instagram::API.new(code: code, state: state).access_token
       if instagram["error_type"]
         { errors: errors_alert("Failed to connect instagram") }
       else

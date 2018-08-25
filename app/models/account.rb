@@ -9,4 +9,5 @@ class Account
 
   embedded_in :user
 
+  validates :provider, :uid, presence: true
 end

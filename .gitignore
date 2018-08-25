@@ -30,3 +30,7 @@
 yarn-debug.log*
 .yarn-integrity
 .env
+/coverage
+**/*.DS_STORE
+public/uploads
+spec/support/uploads

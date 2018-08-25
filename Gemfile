@@ -24,6 +24,10 @@ group :development, :test do
 
   gem 'dotenv-rails'
   gem 'pry-rails'
+
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rubocop-rspec'
 end
 
 group :development do
@@ -37,6 +41,10 @@ group :development do
   gem 'letter_opener'
 
   gem 'rubocop', require: false
+
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'terminal-notifier-guard', '~> 1.6.1'
 end
 
 group :test do
@@ -46,8 +54,11 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 
+  gem 'database_cleaner'
   gem 'rspec-rails'
-  gem 'factory_bot'
+  gem 'simplecov'
+  gem 'timecop'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -63,6 +74,7 @@ gem 'jwt'
 gem 'graphql', '~> 1.8.7'
 gem 'mongoid'
 gem 'mongoid-paranoid'
+gem 'enumerize'
 
 gem 'bootstrap'
 gem 'graphiql-rails', group: :development

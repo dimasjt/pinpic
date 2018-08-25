@@ -26,13 +26,13 @@ module Pinpic
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
 
-    config.generators do |generate|
-      generate.helper false
-      generate.assets false
-      generate.view_specs false
-      generate.test_framework :rspec
-      generate.factory_girl dir: "spec/factories"
-      generate.orm :mongoid
+    config.generators do |g|
+      g.helper false
+      g.assets false
+      g.view_specs false
+      g.test_framework :rspec
+      g.factory_bot dir: "spec/factories", suffix: "factory"
+      g.orm :mongoid
     end
   end
 end
