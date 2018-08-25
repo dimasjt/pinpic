@@ -15,12 +15,16 @@ module Instagram
       self.class.post("/oauth/access_token", body: access_token_options)
     end
 
-    def media_self
-      self.class.get("/v1/users/self/media/recent", query: options)
+    def media_self(max_id:, count:)
+      self.class.get("/v1/users/self/media/recent", query: options.merge(max_id: max_id, count: count))
     end
 
     def user_self
       self.class.get("/v1/users/self", query: options)
+    end
+
+    def media_comments(media_id:)
+      self.class.get("/v1/media/#{media_id}/comments", query: options)
     end
 
     def default_url_options

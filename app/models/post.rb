@@ -11,9 +11,13 @@ class Post
   field :caption, type: String
   field :likes, type: Integer
   field :tags, type: Array
+  field :media_id, type: String
 
   enumerize :type, in: TYPES
 
   embeds_many :medias, class_name: "PostMedia"
+  has_many :comments, class_name: "PostComment"
   belongs_to :user
+
+  validates :media_id, uniqueness: true
 end

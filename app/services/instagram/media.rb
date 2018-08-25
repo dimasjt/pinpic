@@ -29,6 +29,7 @@ module Instagram
         p.likes = metadata[:likes] ? metadata[:likes][:count] : 0
         p.remote_thumbnail_url = metadata[:images][:standard_resolution][:url]
         p.tags = metadata[:tags]
+        p.media_id = metadata[:id]
       end
     end
 

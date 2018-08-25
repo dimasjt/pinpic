@@ -34,5 +34,7 @@ module Pinpic
       g.factory_bot dir: "spec/factories", suffix: "factory"
       g.orm :mongoid
     end
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end

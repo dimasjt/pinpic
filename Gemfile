@@ -11,8 +11,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -75,6 +73,9 @@ gem 'graphql', '~> 1.8.7'
 gem 'mongoid'
 gem 'mongoid-paranoid'
 gem 'enumerize'
+gem 'sidekiq'
+gem 'activejob-status'
+gem 'redis-rails'
 
 gem 'bootstrap'
 gem 'graphiql-rails', group: :development

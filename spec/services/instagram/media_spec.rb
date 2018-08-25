@@ -41,6 +41,7 @@ RSpec.describe Instagram::Media do
         expect(post.thumbnail_url).not_to be_nil
         expect(post.metadata).to eq(params)
         expect(post.tags).to eq(["holla"])
+        expect(post.media_id).to eq("123456789")
       end
     end
 
