@@ -11,9 +11,9 @@ const NavItemLink = (props: any) => (
 )
 
 const NavbarBrandLink = (props: any) => (
-  <RouteLink tag={NavbarBrand} {...props}>
+  <NavbarBrand tag={RouteLink} {...props}>
     {props.children}
-  </RouteLink>
+  </NavbarBrand>
 )
 
 export {

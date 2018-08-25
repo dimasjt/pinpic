@@ -6,7 +6,7 @@ module Mutations
 
     # TODO: define arguments
     argument :code, String, required: true
-    argument :state, String, required: true
+    argument :state, String, required: false
 
     # TODO: define resolve method
     def resolve(code:, state:)

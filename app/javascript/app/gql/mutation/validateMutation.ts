@@ -6,6 +6,12 @@ mutation validate {
 		user {
 			id
 			email
+			connected
+			accounts {
+				id
+				provider
+				uid
+			}
 		}
 	}
 }

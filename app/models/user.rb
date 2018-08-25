@@ -58,7 +58,7 @@ class User
   def payload
     as_json(only: :email).merge(
       id: id.to_s,
-      exp: Time.now.to_i + 24 * 7 * 3600
+      # exp: Time.now.to_i + 24 * 7 * 3600
     )
   end
 

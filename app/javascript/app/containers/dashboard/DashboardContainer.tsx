@@ -1,17 +1,24 @@
 import * as React from 'react'
 
 import LoginInstagram from '@components/account/LoginInstagram'
+import GetImages from '@components/account/GetImages'
+import { withConsumer } from '@context/MainContext'
 
-class DashboardContainer extends React.Component<{}> {
+import { MainContextProps } from '@types'
+
+class DashboardContainer extends React.Component<MainContextProps> {
   render() {
+    const { user } = this.props
+
     return (
       <div>
         <h1>Dashboard</h1>
 
-        <LoginInstagram />
+        { !user.connected && <LoginInstagram /> }
+        { user.connected && <GetImages />}
       </div>
     )
   }
 }
 
-export default DashboardContainer
+export default withConsumer(DashboardContainer)

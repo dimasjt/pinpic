@@ -1,6 +1,14 @@
+export interface Account {
+  id: string
+  uid: string
+  provider: string
+}
+
 export interface User {
-  id: number
+  id: string
   email: string
+  connected: boolean
+  accounts: [Account]
 }
 
 export interface MainContextProps {

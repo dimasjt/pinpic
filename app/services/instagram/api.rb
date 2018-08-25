@@ -16,11 +16,11 @@ module Instagram
     end
 
     def media_self
-      self.class.get("/v1/users/self/media/recent?access_token=#{options[:access_token]}")
+      self.class.get("/v1/users/self/media/recent", query: options)
     end
 
     def user_self
-      self.class.get("/v1/users/self?access_token=#{options[:access_token]}")
+      self.class.get("/v1/users/self", query: options)
     end
 
     def default_url_options
