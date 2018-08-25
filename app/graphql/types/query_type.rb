@@ -14,8 +14,14 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :posts, [Types::PostType], null: true
+
     def user(id:)
       User.find(id)
+    end
+
+    def posts
+      context[:current_user].posts
     end
   end
 end

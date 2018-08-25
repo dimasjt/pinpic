@@ -18,3 +18,13 @@ export interface MainContextProps {
   user: User
   loggedIn: boolean
 }
+
+export interface Post {
+  id: string
+  caption: string
+  likes: number
+  tags: [string]
+  type: string
+  thumbnail: string
+  mediaId: string
+}

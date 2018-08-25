@@ -12,7 +12,7 @@ module Mutations
     def resolve(code:, state:)
       instagram = Instagram::API.new(code: code, state: state).access_token
       if instagram["error_type"]
-        { errors: errors_alert("Failed to connect instagram") }
+        { errors: errors_alert(["Failed to connect instagram"]) }
       else
         account = context[:current_user].accounts.find_or_initialize_by(provider: "instagram", uid: instagram["access_token"])
         account.metadata = instagram["user"] unless account.persisted?
