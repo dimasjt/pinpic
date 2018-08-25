@@ -3,14 +3,15 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
 } from 'reactstrap'
 
-import { NavItemLink } from '@components/common/Link'
+import { NavItemLink, NavbarBrandLink } from '@components/common/Link'
 import LogoutLink from '@components/auth/LogoutLink'
 
-interface Props {}
+interface Props {
+  loggedIn: boolean
+}
 
 interface State {
   isOpen: boolean
@@ -30,25 +31,39 @@ class AppNavbar extends React.Component<Props, State> {
     })
   }
 
+  renderLogged = () => (
+    <React.Fragment>
+      <NavItemLink to="/dashboard">
+        Dashboard
+      </NavItemLink>
+      <NavItemLink to="/profile">
+        Profile
+      </NavItemLink>
+      <LogoutLink />
+    </React.Fragment>
+  )
+
+  renderUnlogged = () => (
+    <React.Fragment>
+      <NavItemLink to="/login">
+        Login
+      </NavItemLink>
+      <NavItemLink to="/register">
+        Register
+      </NavItemLink>
+    </React.Fragment>
+  )
+
   render() {
     return (
       <div>
         <Navbar color="light" light expand="md">
           <div className="container">
-            <NavbarBrand href="/">reactstrap</NavbarBrand>
+            <NavbarBrandLink to="/">PinPic</NavbarBrandLink>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-                <NavItemLink to="/">
-                  Home
-                </NavItemLink>
-                <NavItemLink to="/login">
-                  Login
-                </NavItemLink>
-                <NavItemLink to="/register">
-                  Register
-                </NavItemLink>
-                <LogoutLink />
+                { this.props.loggedIn ? this.renderLogged() : this.renderUnlogged() }
               </Nav>
             </Collapse>
           </div>

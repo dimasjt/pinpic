@@ -68,15 +68,22 @@ class MainContext extends React.Component<Props, State> {
   }
 
   validateToken = () => {
-    this.props.validateUserMutation()
-      .then(({ data: { validate } }) => {
-        this.setState({ user: validate.user, loggedIn: true })
-      })
+    return new Promise((resolve, reject) => {
+      this.props.validateUserMutation()
+        .then(({ data: { validate } }) => {
+          this.setState({ user: validate.user, loggedIn: true })
+          resolve(validate.user)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 
   render() {
     const value = {
       user: this.state.user,
+      loggedIn: this.state.loggedIn,
 
       logoutUser: this.logoutUser,
       loginUser: this.loginUser,

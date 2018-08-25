@@ -8,27 +8,36 @@ import DashboardContainer from '@containers/dashboard/DashboardContainer'
 import RegisterContainer from '@containers/auth/RegisterContainer'
 import OAuthCallbackContainer from '@containers/auth/OAuthCallbackContainer'
 import Navbar from '@components/layout/Navbar'
+import PrivateRoute from "@components/auth/PrivateRoute"
 
 import { withConsumer } from '@context/MainContext'
 import { MainContextProps } from '@types'
 import history from '@utils/history'
 
 class Routes extends React.Component<MainContextProps> {
+  state = {
+    validated: false
+  }
+
   componentDidMount = () => {
     this.props.validateToken()
+      .then(() => this.setState({ validated: true }))
+      .catch(() => this.setState({ validated: true }))
   }
 
   render() {
+    if (!this.state.validated) return null
+
     return (
       <Router history={history}>
         <div>
-          <Navbar />
+          <Navbar loggedIn={this.props.loggedIn} />
 
           <div className="container">
             <Route exact path="/" component={HomeContainer} />
             <Route path="/login" component={LoginContainer} />
             <Route path="/register" component={RegisterContainer} />
-            <Route path="/dashboard" component={DashboardContainer} />
+            <PrivateRoute path="/dashboard" component={DashboardContainer} />
             <Route exact path="/oauth/callback" component={OAuthCallbackContainer} />
           </div>
 

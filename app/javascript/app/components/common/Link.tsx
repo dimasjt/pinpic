@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { NavLink, NavItem } from 'reactstrap'
+import { NavLink, NavItem, NavbarBrand } from 'reactstrap'
 import { Link as RouteLink } from 'react-router-dom'
 
 const NavItemLink = (props: any) => (
@@ -10,6 +10,13 @@ const NavItemLink = (props: any) => (
   </NavItem>
 )
 
+const NavbarBrandLink = (props: any) => (
+  <RouteLink tag={NavbarBrand} {...props}>
+    {props.children}
+  </RouteLink>
+)
+
 export {
   NavItemLink,
+  NavbarBrandLink,
 }
