@@ -6,8 +6,6 @@ import HomeContainer from '@containers/HomeContainer'
 import LoginContainer from '@containers/auth/LoginContainer'
 import DashboardContainer from '@containers/dashboard/DashboardContainer'
 import RegisterContainer from '@containers/auth/RegisterContainer'
-import ScheduleContainer from '@containers/schedule/ScheduleContainer'
-import ProfileContainer from '@containers/users/ProfileContainer'
 import OAuthCallbackContainer from '@containers/auth/OAuthCallbackContainer'
 import Navbar from '@components/layout/Navbar'
 import PrivateRoute from "@components/auth/PrivateRoute"
@@ -46,8 +44,6 @@ class Routes extends React.Component<MainContextProps> {
             <Route path="/login" component={LoginContainer} />
             <Route path="/register" component={RegisterContainer} />
             <PrivateRoute path="/dashboard" component={DashboardContainer} />
-            <PrivateRoute path="/schedule" component={ScheduleContainer} />
-            <PrivateRoute path="/profile" component={ProfileContainer} />
             <Route exact path="/oauth/callback" component={OAuthCallbackContainer} />
           </div>
 

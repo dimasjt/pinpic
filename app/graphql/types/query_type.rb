@@ -14,19 +14,9 @@ module Types
       argument :id, ID, required: true
     end
 
-    field :posts, [Types::PostType], null: true
-    field :post_schedules, [Types::PostScheduleType], null: true
-
     def user(id:)
       User.find(id)
     end
 
-    def posts
-      context[:current_user].posts
-    end
-
-    def post_schedules
-      context[:current_user].post_schedules
-    end
   end
 end

@@ -12,12 +12,6 @@ mutation validate {
 				provider
 				uid
 			}
-			pages {
-				id
-				uid
-				name
-				instagramId
-			}
 		}
 	}
 }
