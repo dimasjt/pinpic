@@ -42,7 +42,7 @@ class User
 
   embeds_many :accounts
 
-  has_many :posts
+  has_many :places
   has_many :file_stores
 
   def token

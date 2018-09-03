@@ -14,8 +14,14 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :search_places, [Types::PlaceType], null: false
+
     def user(id:)
       User.find(id)
+    end
+
+    def search_places
+      Place.all
     end
 
   end

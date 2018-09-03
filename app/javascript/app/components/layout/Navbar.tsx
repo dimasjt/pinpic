@@ -33,6 +33,9 @@ class AppNavbar extends React.Component<Props, State> {
 
   renderLogged = () => (
     <React.Fragment>
+      <NavItemLink to="/search">
+        Search
+      </NavItemLink>
       <NavItemLink to="/dashboard">
         Dashboard
       </NavItemLink>

@@ -7,6 +7,7 @@ import LoginContainer from '@containers/auth/LoginContainer'
 import DashboardContainer from '@containers/dashboard/DashboardContainer'
 import RegisterContainer from '@containers/auth/RegisterContainer'
 import OAuthCallbackContainer from '@containers/auth/OAuthCallbackContainer'
+import SearchContainer from '@containers/search/SearchContainer'
 import Navbar from '@components/layout/Navbar'
 import PrivateRoute from "@components/auth/PrivateRoute"
 
@@ -45,6 +46,7 @@ class Routes extends React.Component<MainContextProps> {
             <Route path="/register" component={RegisterContainer} />
             <PrivateRoute path="/dashboard" component={DashboardContainer} />
             <Route exact path="/oauth/callback" component={OAuthCallbackContainer} />
+            <Route path="/search" component={SearchContainer} />
           </div>
 
           <Alert stack={{ limit: 5, effect: 'scale', position: 'top-right', timeout: 5000 }} />
