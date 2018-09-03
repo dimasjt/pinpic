@@ -7,12 +7,12 @@ import {
 } from 'reactstrap'
 import shortid from 'shortid'
 
-const Input = ({ field, type, placeholder, value, onChange, errors }) => {
+const Input = ({ field, type, placeholder, value, onChange, errors, label }) => {
   const invalid = errors[field] && errors[field].length && true
 
   return (
     <FormGroup>
-      <Label for={field}>Email</Label>
+      <Label for={field}>{label}</Label>
       <FormInput
         type={type}
         name={field}

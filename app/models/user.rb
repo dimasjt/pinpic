@@ -43,6 +43,9 @@ class User
   embeds_many :accounts
 
   has_many :posts
+  has_many :post_schedules
+  has_many :file_stores
+  has_many :pages
 
   def token
     JWT.encode payload, ENV["JWT_SECRET"], "HS256"

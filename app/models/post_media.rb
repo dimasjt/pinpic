@@ -5,5 +5,5 @@ class PostMedia
 
   field :type, type: String
 
-  embedded_in :post
+  embedded_in :postable, polymorphic: true
 end

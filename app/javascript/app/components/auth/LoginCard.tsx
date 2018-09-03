@@ -45,6 +45,14 @@ class LoginCard extends React.Component<Props, State> {
       })
   }
 
+  loginFacebook = () => {
+    FB.login(response => {
+      console.log(response)
+    }, {
+      scope: 'email,manage_pages,pages_show_list,instagram_basic,instagram_manage_comments,instagram_manage_insights,public_profile'
+    })
+  }
+
   onChange = (field: string, value: string): void => {
     this.setState({ [field]: value })
   }
@@ -81,6 +89,8 @@ class LoginCard extends React.Component<Props, State> {
             </FormGroup>
 
             <Button onClick={this.login} type="submit">Login</Button>
+            {' '}
+            <Button onClick={this.loginFacebook}>Login with Facebook</Button>
           </Form>
         </CardBody>
       </Card>

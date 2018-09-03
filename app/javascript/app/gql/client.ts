@@ -3,7 +3,7 @@ import ApolloClient from "apollo-boost";
 import { getToken } from '@utils/session'
 
 const client = new ApolloClient({
-  uri: "/graphql",
+  uri: "/api/graphql",
   request: function(operation: any) {
     const token = getToken()
     if (token) {

@@ -1,9 +1,4 @@
-class GraphqlController < ActionController::Base
-  include Devise::Controllers::Helpers
-
-  skip_before_action :verify_authenticity_token
-  before_action :authentication
-
+class Api::GraphqlController < Api::BaseController
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
@@ -43,11 +38,5 @@ class GraphqlController < ActionController::Base
     logger.error e.backtrace.join("\n")
 
     render json: { error: { message: e.message, backtrace: e.backtrace }, data: {} }, status: 500
-  end
-
-  def authentication
-    return unless request.headers["Authorization"]
-    _, token = request.headers["Authorization"].split(/\s/)
-    @current_user = User.find_by_token(token)
   end
 end

@@ -9,6 +9,7 @@ export interface User {
   email: string
   connected: boolean
   accounts: [Account]
+  pages: [Page]
 }
 
 export interface MainContextProps {
@@ -27,4 +28,17 @@ export interface Post {
   type: string
   thumbnail: string
   mediaId: string
+}
+
+export interface Page {
+  id: string
+  uid: string
+  name: string
+  instagramId: string
+}
+
+export interface Schedule {
+  id: string
+  caption: string
+  publishAt: Date
 }

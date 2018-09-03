@@ -18,5 +18,17 @@ module Mutations
         }
       end
     end
+
+    def current_user
+      context[:current_user]
+    end
+
+    def fb_graph
+      Koala::Facebook::API.new(@access_token)
+    end
+
+    def fb_oauth
+      Koala::Facebook::OAuth.new
+    end
   end
 end

@@ -5,6 +5,7 @@ module Types
     field :connected, Boolean, null: false
 
     field :accounts, [Types::AccountType], null: true
+    field :pages, [Types::PageType], null: true
 
     def connected
       object.accounts.present?

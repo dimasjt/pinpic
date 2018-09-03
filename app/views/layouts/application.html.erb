@@ -12,6 +12,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>
     <%= stylesheet_pack_tag 'application' %>
+    <script src="https://connect.facebook.net/en_US/sdk.js" id="facebook-jssdk"></script>
   </head>
 
   <body>
@@ -20,7 +21,7 @@
     <script>
       window.fbAsyncInit = function() {
         FB.init({
-          appId      : '659176044449006',
+          appId      : '<%= ENV["FACEBOOK_APP_ID"] %>',
           cookie     : true,
           xfbml      : true,
           version    : 'v3.1'
@@ -28,15 +29,9 @@
 
         FB.AppEvents.logPageView();
 
+        FB.getLoginStatus(response => console.log(response))
       };
 
-      (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
     </script>
   </body>
 </html>

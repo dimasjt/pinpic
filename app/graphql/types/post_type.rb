@@ -7,5 +7,6 @@ module Types
     field :tags, [String], null: true
     field :media_id, String, null: true
     field :thumbnail, String, null: true
+    field :medias, [Types::PostMediaType], null: true
   end
 end

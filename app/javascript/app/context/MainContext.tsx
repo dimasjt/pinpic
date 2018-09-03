@@ -33,6 +33,10 @@ class MainContext extends React.Component<Props, State> {
     }
   }
 
+  setUser = (user) => {
+    this.setState({ user })
+  }
+
   logoutUser = () => {
     removeToken()
     this.setState({ user: null, loggedIn: false })
@@ -89,6 +93,7 @@ class MainContext extends React.Component<Props, State> {
       loginUser: this.loginUser,
       validateToken: this.validateToken,
       registerUser: this.registerUser,
+      setUser: this.setUser,
     }
 
     return (

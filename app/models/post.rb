@@ -15,7 +15,7 @@ class Post
 
   enumerize :type, in: TYPES
 
-  embeds_many :medias, class_name: "PostMedia"
+  embeds_many :medias, as: :postable, class_name: "PostMedia"
   has_many :comments, class_name: "PostComment"
   belongs_to :user
 

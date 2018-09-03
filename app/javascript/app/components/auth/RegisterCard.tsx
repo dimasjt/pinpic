@@ -56,6 +56,7 @@ class RegisterCard extends React.Component<MainContextProps, State> {
               type="email"
               field="email"
               placeholder="Your email"
+              label="Email"
               value={this.state.email}
               onChange={this.onChange}
               errors={this.state.errors}
@@ -64,6 +65,7 @@ class RegisterCard extends React.Component<MainContextProps, State> {
               type="password"
               field="password"
               placeholder="Your password"
+              label="Password"
               value={this.state.password}
               onChange={this.onChange}
               errors={this.state.errors}

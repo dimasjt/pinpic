@@ -76,6 +76,7 @@ gem 'enumerize'
 gem 'sidekiq'
 gem 'activejob-status'
 gem 'redis-rails'
+gem 'koala', '~> 3.0.0'
 
 gem 'bootstrap'
 gem 'graphiql-rails', group: :development

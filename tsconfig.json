@@ -18,7 +18,10 @@
       "@utils/*": ["app/javascript/app/utils/*"],
       "@context/*": ["app/javascript/app/context/*"],
       "@types/*": ["app/javascript/app/types/*"]
-    }
+    },
+    "types": [
+      "node", "facebook-js-sdk"
+    ]
   },
   "exclude": [
     "**/*.spec.ts",
