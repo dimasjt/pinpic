@@ -18,6 +18,7 @@ class Place
 
   belongs_to :user
   belongs_to :city
-  has_many :images, as: :imageable
+  has_many :images, as: :imageable, autosave: true
   embeds_many :open_times
+  has_and_belongs_to_many :tags
 end

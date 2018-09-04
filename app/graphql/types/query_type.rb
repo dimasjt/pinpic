@@ -18,6 +18,8 @@ module Types
     field :place, Types::PlaceType, null: false do
       argument :id, ID, required: true
     end
+    field :cities, [Types::CityType], null: false
+    field :tags, [Types::TagType], null: false
 
     def user(id:)
       User.find(id)
@@ -29,6 +31,14 @@ module Types
 
     def place(id:)
       Place.find(id)
+    end
+
+    def cities
+      City.all
+    end
+
+    def tags
+      Tag.all
     end
 
   end

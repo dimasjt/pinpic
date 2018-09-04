@@ -24,7 +24,7 @@ class PlaceShowContainer extends React.Component<Props> {
         params={this.props.match.params}
       >
         <PlaceHero />
-        <Container>
+        <Container style={{ paddingTop: 50 }}>
           <Row>
             <Col md={8}>
               <PlaceBreadcrumb />

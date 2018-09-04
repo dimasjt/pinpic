@@ -1,6 +1,9 @@
-const upload = (file: File) => {
+const upload = (files: File[]) => {
   const formData = new FormData()
-  formData.append('file', file, file.name)
+
+  files.forEach(file => {
+    formData.append('files[]', file, file.name)
+  })
 
   const token = localStorage.getItem("token")
 

@@ -4,9 +4,11 @@ RSpec.describe Api::UploadController, type: :controller do
   let(:user) { create(:user) }
 
   describe "POST #create" do
+    let(:file) { fixture_file_upload("#{Rails.root}/spec/fixtures/image.jpg", "image/jpg") }
     let(:params) {
-      { file: fixture_file_upload("#{Rails.root}/spec/fixtures/image.jpg", "image/jpg") }
+      { files: [file, file] }
     }
+
     before do
       request.headers["Content-Type"] = "multipart/form-data"
     end
@@ -33,8 +35,8 @@ RSpec.describe Api::UploadController, type: :controller do
         end
 
         it "return json errors" do
-          post :create, params: { file: nil }
-          expect(JSON.parse(response.body)["errors"]).to eq(["File can\'t be blank"])
+          post :create, params: { files: nil }
+          expect(JSON.parse(response.body)["errors"]).to eq(["Files can\'t be blank"])
         end
       end
     end
@@ -51,14 +53,7 @@ RSpec.describe Api::UploadController, type: :controller do
         end
 
         it "return json" do
-          file = FileStore.first
-          json = {
-            file_url: file.file_url,
-            id: file.id.to_s,
-            user_id: file.user_id.to_s
-          }
-          expected = JSON.parse(response.body)["data"]["file_store"].sort_by { |k, _v| k }.to_h.symbolize_keys
-          expect(expected).to eq(json)
+          expect(JSON.parse(response.body)["data"]["file_stores"].length).to eq(2)
         end
       end
     end
