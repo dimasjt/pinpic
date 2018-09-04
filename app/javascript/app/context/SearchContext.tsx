@@ -1,11 +1,14 @@
 import * as React from 'react'
+import { Query } from 'react-apollo'
 
 import { Place } from '@types'
+import searchPlacesQuery from '@gql/query/searchPlacesQuery';
 
 const Context = React.createContext({})
 
 interface Props {
   children: JSX.Element
+  searchPlaces: any
 }
 
 interface State {
@@ -13,13 +16,17 @@ interface State {
 }
 
 class SearchContext extends React.Component<Props, State> {
-  state = {
-    places: []
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      places: props.searchPlaces.data.searchPlaces,
+    }
   }
 
   render() {
     const value = {
-
+      places: this.state.places
     }
 
     return (
@@ -37,7 +44,19 @@ const withConsumer = (Component) => (props: any) => (
 )
 
 const Provider = (props: any) => (
-  <SearchContext {...props} />
+  <Query query={searchPlacesQuery}>
+    {(searchPlaces) => (
+      searchPlaces.loading ? null : (
+        <SearchContext
+          {...{
+            ...props,
+            searchPlaces,
+          }}
+        />
+      )
+    )}
+  </Query>
+
 )
 
 export {

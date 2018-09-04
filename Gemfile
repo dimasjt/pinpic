@@ -29,6 +29,7 @@ gem 'graphql', '~> 1.8.7'
 gem 'mongoid'
 gem 'mongoid-paranoid'
 gem 'mongoid-geospatial', require: "mongoid/geospatial"
+gem 'mongoid-slug'
 gem 'enumerize'
 gem 'sidekiq'
 gem 'activejob-status'

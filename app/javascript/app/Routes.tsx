@@ -8,6 +8,9 @@ import DashboardContainer from '@containers/dashboard/DashboardContainer'
 import RegisterContainer from '@containers/auth/RegisterContainer'
 import OAuthCallbackContainer from '@containers/auth/OAuthCallbackContainer'
 import SearchContainer from '@containers/search/SearchContainer'
+import PlaceShowContainer from '@containers/places/PlaceShowContainer'
+
+import Footer from '@components/layout/Footer'
 import Navbar from '@components/layout/Navbar'
 import PrivateRoute from "@components/auth/PrivateRoute"
 
@@ -40,15 +43,17 @@ class Routes extends React.Component<MainContextProps> {
         <div>
           <Navbar loggedIn={this.props.loggedIn} />
 
-          <div className="container">
+          <div>
             <Route exact path="/" component={HomeContainer} />
             <Route path="/login" component={LoginContainer} />
             <Route path="/register" component={RegisterContainer} />
             <PrivateRoute path="/dashboard" component={DashboardContainer} />
             <Route exact path="/oauth/callback" component={OAuthCallbackContainer} />
             <Route path="/search" component={SearchContainer} />
+            <Route path="/places/:id" component={PlaceShowContainer} />
           </div>
 
+          <Footer />
           <Alert stack={{ limit: 5, effect: 'scale', position: 'top-right', timeout: 5000 }} />
         </div>
       </Router>

@@ -15,6 +15,9 @@ module Types
     end
 
     field :search_places, [Types::PlaceType], null: false
+    field :place, Types::PlaceType, null: false do
+      argument :id, ID, required: true
+    end
 
     def user(id:)
       User.find(id)
@@ -22,6 +25,10 @@ module Types
 
     def search_places
       Place.all
+    end
+
+    def place(id:)
+      Place.find(id)
     end
 
   end

@@ -1,2 +1,0 @@
-class PostThumbnailUploader < BaseUploader
-end

@@ -8,7 +8,7 @@ export interface User {
   id: string
   email: string
   connected: boolean
-  accounts: [Account]
+  accounts: Account[]
 }
 
 export interface MainContextProps {
@@ -24,9 +24,23 @@ export interface Coordinate {
   longitude: number
 }
 
+export interface Image {
+  id: string
+  fileUrl: string
+}
+
+export interface City {
+  id: string
+  name: string
+  location: Coordinate
+}
+
 export interface Place {
   id: string
   name: string
   description: string
+  slug: string
   location: Coordinate
+  images: Image[]
+  city: City
 }
