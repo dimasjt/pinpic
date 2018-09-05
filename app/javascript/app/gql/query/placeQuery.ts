@@ -22,6 +22,8 @@ query place($id: ID!) {
     images {
       id
       fileUrl
+			width
+			height
     }
 	}
 }
