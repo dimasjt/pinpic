@@ -28,12 +28,6 @@ class Routes extends React.Component<MainContextProps> {
     this.props.validateToken()
       .then(() => this.setState({ validated: true }))
       .catch(() => this.setState({ validated: true }))
-
-    this.checkFacebook()
-  }
-
-  checkFacebook = () => {
-    FB.getLoginStatus(response => console.log(response))
   }
 
   render() {
@@ -44,16 +38,18 @@ class Routes extends React.Component<MainContextProps> {
         <div>
           <Navbar loggedIn={this.props.loggedIn} />
 
-          <Switch>
-            <Route exact path="/" component={HomeContainer} />
-            <Route path="/login" component={LoginContainer} />
-            <Route path="/register" component={RegisterContainer} />
-            <PrivateRoute path="/dashboard" component={DashboardContainer} />
-            <Route exact path="/oauth/callback" component={OAuthCallbackContainer} />
-            <Route path="/search" component={SearchContainer} />
-            <PrivateRoute path="/places/new" component={PlaceNewContainer} />
-            <Route path="/places/:id" component={PlaceShowContainer} />
-          </Switch>
+          <div style={{ paddingTop: 80 }}>
+            <Switch>
+              <Route exact path="/" component={HomeContainer} />
+              <Route path="/login" component={LoginContainer} />
+              <Route path="/register" component={RegisterContainer} />
+              <PrivateRoute path="/dashboard" component={DashboardContainer} />
+              <Route exact path="/oauth/callback" component={OAuthCallbackContainer} />
+              <Route path="/search" component={SearchContainer} />
+              <PrivateRoute path="/places/new" component={PlaceNewContainer} />
+              <Route path="/places/:id" component={PlaceShowContainer} />
+            </Switch>
+          </div>
 
           <Footer />
           <Alert stack={{ limit: 5, effect: 'scale', position: 'top-right', timeout: 5000 }} />

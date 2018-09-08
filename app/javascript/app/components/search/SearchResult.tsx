@@ -13,7 +13,7 @@ const SearchResult = ({ places }) => (
         <PlaceCard
           key={place.id}
           place={place}
-          size={{ md: 4 }}
+          size={{ md: 12 }}
         />
       ))
     }

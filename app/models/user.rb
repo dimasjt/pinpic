@@ -44,6 +44,7 @@ class User
 
   has_many :places
   has_many :file_stores
+  has_many :wishlists
 
   def token
     JWT.encode payload, ENV["JWT_SECRET"], "HS256"

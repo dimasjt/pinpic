@@ -2,8 +2,14 @@ import * as React from 'react'
 import { Button } from 'reactstrap'
 import { FiFacebook, FiTwitter, FiHeart } from 'react-icons/fi'
 
-const ShareButton = ({ type, url }) => (
-  <Button outline color="primary">
+interface Props {
+  type: string
+  url?: string
+  onClick?: any
+}
+
+const ShareButton: React.StatelessComponent<Props> = ({ type, url, onClick }) => (
+  <Button outline color="primary" onClick={onClick}>
     {
       (type === 'facebook' && <FiFacebook />) ||
       (type === 'twitter' && <FiTwitter />) ||

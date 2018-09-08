@@ -63,7 +63,7 @@ class AppNavbar extends React.Component<Props, State> {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar color="light" light expand="md" fixed="top">
           <div className="container">
             <NavbarBrandLink to="/">PinPic</NavbarBrandLink>
             <NavbarToggler onClick={this.toggle} />

@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { ApolloProvider } from 'react-apollo'
-import FacebookProvider from 'react-facebook'
 
 import Routes from './Routes'
 import { Provider } from '@context/MainContext'
@@ -12,9 +11,7 @@ const appId = process.env.FACEBOOK_APP_ID
 const App = () => (
   <ApolloProvider client={client}>
     <Provider>
-      <FacebookProvider appId={appId}>
-        <Routes />
-      </FacebookProvider>
+      <Routes />
     </Provider>
   </ApolloProvider>
 )
