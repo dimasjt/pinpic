@@ -1,14 +1,15 @@
 import * as React from 'react'
-import { Query } from 'react-apollo'
+import { compose, graphql } from 'react-apollo'
 
 import { Place } from '@types'
 import searchPlacesQuery from '@gql/query/searchPlacesQuery';
+import Loading from '@components/common/Loading';
 
 const Context = React.createContext({})
 
 interface Props {
   children: JSX.Element
-  searchPlaces: any
+  searchPlacesQuery: any
 }
 
 interface State {
@@ -20,11 +21,22 @@ class SearchContext extends React.Component<Props, State> {
     super(props)
 
     this.state = {
-      places: props.searchPlaces.data.searchPlaces,
+      places: props.searchPlacesQuery.searchPlaces,
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.searchPlacesQuery !== this.props.searchPlacesQuery) {
+      this.setState({
+        places: nextProps.searchPlacesQuery.searchPlaces,
+      })
     }
   }
 
   render() {
+    if (this.props.searchPlacesQuery.loading)
+      return <Loading />
+
     const value = {
       places: this.state.places
     }
@@ -43,21 +55,9 @@ const withConsumer = (Component) => (props: any) => (
   </Context.Consumer>
 )
 
-const Provider = (props: any) => (
-  <Query query={searchPlacesQuery}>
-    {(searchPlaces) => (
-      searchPlaces.loading ? null : (
-        <SearchContext
-          {...{
-            ...props,
-            searchPlaces,
-          }}
-        />
-      )
-    )}
-  </Query>
-
-)
+const Provider = compose(
+  graphql(searchPlacesQuery, { name: 'searchPlacesQuery' }),
+)(SearchContext)
 
 export {
   Provider,

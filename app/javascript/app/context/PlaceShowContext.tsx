@@ -4,6 +4,7 @@ import Alert from 'react-s-alert'
 
 import placeQuery from '@gql/query/placeQuery'
 import wishlistPlaceMutation from '@gql/mutation/wishlistPlaceMutation'
+import Loading from '@app/components/common/Loading'
 
 interface Props {
   placeQuery: any,
@@ -33,7 +34,7 @@ class PlaceShowContext extends React.Component<Props> {
 
   render() {
     if (this.props.placeQuery.loading)
-      return null // Loading Component
+      return <Loading />
 
     const value = {
       place: this.props.placeQuery.place,
