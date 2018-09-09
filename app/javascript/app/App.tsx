@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { ApolloProvider } from 'react-apollo'
+import { hot } from 'react-hot-loader'
 
 import Routes from './Routes'
 import { Provider } from '@context/MainContext'
@@ -16,4 +17,4 @@ const App = () => (
   </ApolloProvider>
 )
 
-export default App
+export default hot(module)(App)

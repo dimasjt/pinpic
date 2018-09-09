@@ -11,6 +11,7 @@
         "useBuiltIns": true
       }
     ],
+    "typescript",
     "react"
   ],
   "plugins": [
@@ -31,6 +32,7 @@
         "components": "./app/javascript/app/components",
         "containers": "./app/javascript/app/containers"
       }
-    }]
+    }],
+    "react-hot-loader/babel"
   ]
 }
