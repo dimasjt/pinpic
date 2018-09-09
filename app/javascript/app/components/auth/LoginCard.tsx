@@ -1,101 +1,63 @@
 import * as React from 'react'
 import {
   Card,
-  Button,
   CardHeader,
   CardBody,
   CardTitle,
-  Form,
-  FormGroup,
-  Label,
-  Input,
 } from 'reactstrap'
 import Alert from 'react-s-alert'
+import { withStateHandlers, compose, withHandlers } from 'recompose'
 
+import LoginForm from './form/LoginForm'
 import { withConsumer } from '@context/MainContext'
 import history from '@utils/history'
 
 interface Props {
-  loginUser: any
-}
-
-interface State {
+  onChange: void
+  onSubmit: void
   email: string
   password: string
-  [field: string]: string
 }
 
-class LoginCard extends React.Component<Props, State> {
-  state = {
+const LoginCard: React.StatelessComponent<Props> = ({ onChange, onSubmit, email, password }) => (
+  <Card>
+    <CardHeader>Login</CardHeader>
+    <CardBody>
+      <CardTitle>Login to PinPic</CardTitle>
+
+      <LoginForm
+        onChange={onChange}
+        onSubmit={onSubmit}
+        email={email}
+        password={password}
+      />
+    </CardBody>
+  </Card>
+)
+
+const enhance = compose(
+  withConsumer,
+  withStateHandlers({
     email: '',
-    password: '',
-  }
+    password: ''
+  }, {
+    onChange: () => (field, value) => ({ [field]: value })
+  }),
+  withHandlers({
+    onSubmit: ({ email, password, loginUser }) => event => {
+      event.preventDefault()
+      const user = { email, password }
 
-  login = (event) => {
-    event.preventDefault()
-    const user = { email: this.state.email, password: this.state.password }
+      loginUser(user)
+        .then(() => {
+          history.push('/dashboard')
+          Alert.success('Login successfully')
+        })
+        .catch(errors => {
+          Alert.error(errors && errors[0].message)
+        })
+    }
+  })
+)
 
-    this.props.loginUser(user)
-      .then(() => {
-        history.push('/dashboard')
-        Alert.success('Login successfully')
-      })
-      .catch(errors => {
-        Alert.error(errors && errors[0].message)
-      })
-  }
-
-  loginFacebook = () => {
-    FB.login(response => {
-      console.log(response)
-    }, {
-      scope: 'email,manage_pages,pages_show_list,instagram_basic,instagram_manage_comments,instagram_manage_insights,public_profile'
-    })
-  }
-
-  onChange = (field: string, value: string): void => {
-    this.setState({ [field]: value })
-  }
-
-  render() {
-    return (
-      <Card>
-        <CardHeader>Login</CardHeader>
-        <CardBody>
-          <CardTitle>Login to PinPic</CardTitle>
-
-          <Form onSubmit={this.login}>
-            <FormGroup>
-              <Label for="email">Email</Label>
-              <Input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Your email"
-                value={this.state.email}
-                onChange={(event) => this.onChange('email', event.target.value)}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="password">Password</Label>
-              <Input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Your password"
-                value={this.state.password}
-                onChange={(event) => this.onChange('password', event.target.value)}
-              />
-            </FormGroup>
-
-            <Button onClick={this.login} type="submit">Login</Button>
-            {' '}
-            <Button onClick={this.loginFacebook}>Login with Facebook</Button>
-          </Form>
-        </CardBody>
-      </Card>
-    )
-  }
-}
-
-export default withConsumer(LoginCard)
+export default enhance(LoginCard)

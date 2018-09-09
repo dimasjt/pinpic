@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-mutation register($email: String!, $password: String!) {
-  register(email: $email, password: $password) {
+mutation register($email: String!, $password: String!, $firstName: String!, $lastName: String! ) {
+  register(email: $email, password: $password, firstName: $firstName, lastName: $lastName) {
     message
     errors {
       message

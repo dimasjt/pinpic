@@ -7,7 +7,18 @@ import {
 } from 'reactstrap'
 import shortid from 'shortid'
 
-const Input = ({ field, type, placeholder, value, onChange, errors, label }) => {
+interface InputProps {
+  onChange: any
+  field: string
+  type: any
+  placeholder?: string
+  value: string
+  errors: any[]
+  label: string
+  autoComplete?: string
+}
+
+const Input: React.StatelessComponent<InputProps> = ({ onChange, field, type, placeholder, value, errors, label, ...rest }) => {
   const invalid = errors[field] && errors[field].length && true
 
   return (
@@ -21,6 +32,7 @@ const Input = ({ field, type, placeholder, value, onChange, errors, label }) => 
         value={value}
         onChange={(event) => onChange(field, event.target.value)}
         invalid={invalid}
+        {...rest}
       />
 
       {

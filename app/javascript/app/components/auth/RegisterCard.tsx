@@ -1,81 +1,73 @@
 import * as React from 'react'
 import {
   Card,
-  Button,
   CardHeader,
   CardBody,
   CardTitle,
-  Form,
 } from 'reactstrap'
 import Alert from 'react-s-alert'
+import { compose, withStateHandlers, withHandlers } from 'recompose'
 
 import { withConsumer } from '@context/MainContext'
-import { MainContextProps } from 'types'
-import Input from '@components/forms/Input'
+import RegisterForm from './form/RegisterForm'
 
-interface State {
+interface Props {
+  onChange: any
+  onSubmit: any
   email: string
   password: string
-  errors: any
-  [field: string]: any
+  firstName: string
+  lastName: string
 }
 
-class RegisterCard extends React.Component<MainContextProps, State> {
-  state = {
-    email: '',
-    password: '',
-    errors: [],
-  }
+const RegisterCard: React.StatelessComponent<Props> = ({ onChange, onSubmit, email, password, firstName, lastName }) => (
+  <Card>
+    <CardHeader>Register</CardHeader>
+    <CardBody>
+      <CardTitle>Register to PinPic</CardTitle>
 
-  register = () => {
-    const user = { email: this.state.email, password: this.state.password }
+      <RegisterForm
+        onChange={onChange}
+        onSubmit={onSubmit}
+        email={email}
+        password={password}
+        firstName={firstName}
+        lastName={lastName}
+      />
+    </CardBody>
+  </Card>
+)
 
-    this.props.registerUser(user)
-      .then(message => {
-        Alert.info(message)
-        this.setState({ email: '', password: '' })
-      })
-      .catch(errors => {
-        this.setState({ errors })
-      })
-  }
-
-  onChange = (field: string, value: string): void => {
-    this.setState({ [field]: value })
-  }
-
-  render() {
-    return (
-      <Card>
-        <CardHeader>Register</CardHeader>
-        <CardBody>
-          <CardTitle>Register to PinPic</CardTitle>
-
-          <Form onSubmit={this.register}>
-            <Input
-              type="email"
-              field="email"
-              placeholder="Your email"
-              label="Email"
-              value={this.state.email}
-              onChange={this.onChange}
-              errors={this.state.errors}
-            />
-            <Input
-              type="password"
-              field="password"
-              placeholder="Your password"
-              label="Password"
-              value={this.state.password}
-              onChange={this.onChange}
-              errors={this.state.errors}
-            />
-            <Button onClick={this.register}>Register</Button>
-          </Form>
-        </CardBody>
-      </Card>
-    )
-  }
+const defaultState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
 }
 
-export default withConsumer(RegisterCard)
+const enhance = compose(
+  withConsumer,
+  withStateHandlers({
+    ...defaultState,
+  }, {
+    onChange: () => (field, value) => ({ [field]: value }),
+    resetState: () => () => ({ ...defaultState })
+  }),
+  withHandlers({
+    onSubmit: ({ registerUser, resetState, email, password, firstName, lastName }) => event => {
+      event.preventDefault()
+      const user = { email, password, firstName, lastName }
+
+      registerUser(user)
+        .then(message => {
+          Alert.info(message)
+          resetState()
+        })
+        .catch(errors => {
+          console.log(errors)
+        })
+    }
+  })
+)
+
+export default enhance(RegisterCard)

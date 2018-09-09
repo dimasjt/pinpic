@@ -16,6 +16,8 @@ class User
   has_many :wishlists
   has_many :reviews
 
+  validates :first_name, :last_name, presence: true
+
   def instagram
     accounts.where(provider: "instagram").first
   end
