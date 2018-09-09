@@ -3,10 +3,22 @@ import { compose, withProps } from 'recompose'
 import { GoogleMap, Marker, withScriptjs, withGoogleMap } from "react-google-maps"
 
 import { withConsumer } from '@context/PlaceShowContext'
+import { Place } from '@types'
 
 const key = process.env.GOOGLE_API_KEY
 
-const PlaceMap = compose(
+interface Props {
+  place: Place
+}
+
+const PlaceMap: React.StatelessComponent<Props> = ({ place }) => (
+  <GoogleMap defaultCenter={place.location}>
+    <Marker position={place.location} />
+  </GoogleMap>
+)
+
+const enhance = compose(
+  withConsumer,
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=${key}`,
     loadingElement: <div style={{ height: `100%` }} />,
@@ -15,10 +27,6 @@ const PlaceMap = compose(
   }),
   withScriptjs,
   withGoogleMap,
-)(({ place }) => (
-  <GoogleMap defaultCenter={place.location}>
-    <Marker position={place.location} />
-  </GoogleMap>
-))
+)
 
-export default withConsumer(PlaceMap)
+export default enhance(PlaceMap)

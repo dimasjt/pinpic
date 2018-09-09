@@ -52,7 +52,12 @@ class Routes extends React.Component<MainContextProps> {
           </div>
 
           <Footer />
-          <Alert stack={{ limit: 5, effect: 'scale', position: 'top-right', timeout: 5000 }} />
+          <Alert
+            effect='scale'
+            timeout={5000}
+            position='top-right'
+            stack={{ limit: 5 }}
+          />
         </div>
       </Router>
     )
