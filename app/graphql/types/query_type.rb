@@ -26,11 +26,11 @@ module Types
     end
 
     def search_places
-      Place.all
+      Place.with_status(:approved).sort(average_rating: -1)
     end
 
     def place(id:)
-      Place.find(id)
+      Place.with_status(:approved).find(id)
     end
 
     def cities

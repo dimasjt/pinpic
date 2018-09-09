@@ -4,8 +4,8 @@ import { IoIosStar, IoIosStarOutline } from 'react-icons/io'
 
 const Rating = (props) => (
   <ReactRating
-    emptySymbol={<IoIosStarOutline size={20} />}
-    fullSymbol={<IoIosStar size={20} />}
+    emptySymbol={<IoIosStarOutline size={props.size} />}
+    fullSymbol={<IoIosStar size={props.size} />}
     {...props}
   />
 )

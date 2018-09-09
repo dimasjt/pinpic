@@ -7,6 +7,7 @@ query searchPlaces {
 		name
 		description
 		slug
+		averageRating
 		location {
 			lat
 			lng

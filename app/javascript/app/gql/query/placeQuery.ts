@@ -25,6 +25,20 @@ query place($id: ID!) {
 			width
 			height
     }
+		reviews {
+			id
+			message
+			rating
+			user {
+				id
+				firstName
+				lastName
+				avatar {
+					original
+					thumb
+				}
+			}
+		}
 	}
 }
 `

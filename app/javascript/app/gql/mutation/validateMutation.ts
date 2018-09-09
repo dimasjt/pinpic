@@ -6,7 +6,12 @@ mutation validate {
 		user {
 			id
 			email
-			connected
+			firstName
+			lastName
+			avatar {
+				original
+				thumb
+			}
 			accounts {
 				id
 				provider

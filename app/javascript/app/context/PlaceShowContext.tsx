@@ -4,11 +4,13 @@ import Alert from 'react-s-alert'
 
 import placeQuery from '@gql/query/placeQuery'
 import wishlistPlaceMutation from '@gql/mutation/wishlistPlaceMutation'
+import createReviewMutation from '@gql/mutation/createReviewMutation'
 import Loading from '@app/components/common/Loading'
 
 interface Props {
-  placeQuery: any,
+  placeQuery: any
   wishlistPlace: any
+  createReview: any
 }
 
 const Context = React.createContext({})
@@ -38,7 +40,9 @@ class PlaceShowContext extends React.Component<Props> {
 
     const value = {
       place: this.props.placeQuery.place,
+
       wishlistPlace: this.wishlistPlace,
+      createReview: this.props.createReview
     }
 
     return (
@@ -48,21 +52,6 @@ class PlaceShowContext extends React.Component<Props> {
     )
   }
 }
-
-// const Provider = (props) => (
-//   <Query query={placeQuery} variables={props.params}>
-//     {(placeQuery) => (
-//       placeQuery.loading ? null : (
-//         <PlaceShowContext
-//           {...{
-//             ...props,
-//             placeQuery,
-//           }}
-//         />
-//       )
-//     )}
-//   </Query>
-// )
 
 interface ProviderProps {
   params: {
@@ -82,6 +71,9 @@ const Provider = compose(
     options: (props: ProviderProps) => ({
       variables: { placeId: props.params.id }
     })
+  }),
+  graphql(createReviewMutation, {
+    name: 'createReview',
   })
 )(PlaceShowContext)
 

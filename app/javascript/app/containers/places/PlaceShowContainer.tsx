@@ -11,8 +11,9 @@ import PlaceMap from '@components/places/PlaceMap'
 import PlaceInfo from '@components/places/PlaceInfo'
 import PlaceShare from '@components/places/PlaceShare'
 import PlaceBreadcrumb from '@components/places/PlaceBreadcrumb'
+import PlaceGallery from '@components/places/PlaceGallery'
+import PlaceReviews from '@components/places/review/PlaceReviews'
 import { Provider } from '@context/PlaceShowContext'
-import PlaceGallery from '@components/places/PlaceGallery';
 
 interface Props {
   match: any
@@ -33,6 +34,7 @@ class PlaceShowContainer extends React.Component<Props> {
               <PlaceDescription />
               <PlaceGallery />
               <PlaceMap />
+              <PlaceReviews />
             </Col>
             <Col md={4}>
               <PlaceShare />

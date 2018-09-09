@@ -1,5 +1,6 @@
 module Types
   class MutationType < Types::BaseObject
+    field :createReview, mutation: Mutations::CreateReview
     field :wishlistPlace, mutation: Mutations::WishlistPlace
     field :createPlace, mutation: Mutations::CreatePlace
     field :oauth, mutation: Mutations::OAuth

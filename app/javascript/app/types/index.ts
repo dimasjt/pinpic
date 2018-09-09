@@ -6,8 +6,9 @@ export interface Account {
 
 export interface User {
   id: string
-  email: string
-  connected: boolean
+  email?: string
+  firstName: string
+  lastName: string
   accounts: Account[]
 }
 
@@ -43,4 +44,11 @@ export interface Place {
   location: Coordinate
   images: Image[]
   city: City
+}
+
+export interface Review {
+  id: string
+  message: string
+  rating: number
+  user?: User
 }

@@ -32,7 +32,9 @@ const PlaceCard = ({ place, size }) => (
           </small>
         </CardText>
         <Rating
-          initialRating={2}
+          initialRating={place.averageRating}
+          size={20}
+          readonly
         />
       </CardBody>
     </Card>

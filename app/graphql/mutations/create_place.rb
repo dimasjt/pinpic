@@ -2,7 +2,7 @@ module Mutations
   class CreatePlace < Mutations::Base
     # TODO: define return fields
     field :place, Types::PlaceType, null: true
-    field :errors, Types::ErrorType, null: true
+    field :errors, [Types::ErrorType], null: true
 
     # TODO: define arguments
     argument :name, String, required: true
