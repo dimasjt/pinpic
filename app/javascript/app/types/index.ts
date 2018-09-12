@@ -21,8 +21,8 @@ export interface MainContextProps {
 }
 
 export interface Coordinate {
-  latitude: number
-  longitude: number
+  lat: number
+  lng: number
 }
 
 export interface Image {

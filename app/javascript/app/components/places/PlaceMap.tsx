@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { compose, withProps } from 'recompose'
-import { GoogleMap, Marker, withScriptjs, withGoogleMap } from "react-google-maps"
+import { GoogleMap, Marker, withScriptjs, withGoogleMap } from 'react-google-maps'
 
 import { withConsumer } from '@context/PlaceShowContext'
 import { Place } from '@types'
@@ -12,9 +12,17 @@ interface Props {
 }
 
 const PlaceMap: React.StatelessComponent<Props> = ({ place }) => (
-  <GoogleMap defaultCenter={place.location}>
-    <Marker position={place.location} />
-  </GoogleMap>
+  <div style={{ padding: '10px 0' }}>
+    <h3>Location</h3>
+    <div>
+      <GoogleMap
+        defaultZoom={8}
+        defaultCenter={{ lat: place.location.lat, lng: place.location.lng }}
+      >
+        <Marker position={place.location} />
+      </GoogleMap>
+    </div>
+  </div>
 )
 
 const enhance = compose(

@@ -11,5 +11,6 @@ module Types
     field :city, Types::CityType, null: true
     field :images, [Types::ImageType], null: true
     field :reviews, [Types::ReviewType], null: true
+    field :tickets, [Types::TicketType], null: true
   end
 end

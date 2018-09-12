@@ -42,6 +42,9 @@ class AppNavbar extends React.Component<Props, State> {
       <NavItemLink to="/places/new">
         Add Place
       </NavItemLink>
+      <NavItemLink to="/wishlists">
+        Wishlists
+      </NavItemLink>
       <NavItemLink to="/profile">
         Profile
       </NavItemLink>

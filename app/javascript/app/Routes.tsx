@@ -10,6 +10,7 @@ import OAuthCallbackContainer from '@containers/auth/OAuthCallbackContainer'
 import SearchContainer from '@containers/search/SearchContainer'
 import PlaceShowContainer from '@containers/places/PlaceShowContainer'
 import PlaceNewContainer from '@containers/places/PlaceNewContainer'
+import WishlistContainer from '@containers/wishlists/WishlistsContainer'
 
 import Footer from '@components/layout/Footer'
 import Navbar from '@components/layout/Navbar'
@@ -48,6 +49,7 @@ class Routes extends React.Component<MainContextProps> {
               <Route path="/search" component={SearchContainer} />
               <PrivateRoute path="/places/new" component={PlaceNewContainer} />
               <Route path="/places/:id" component={PlaceShowContainer} />
+              <PrivateRoute path="/wishlists" component={WishlistContainer} />
             </Switch>
           </div>
 

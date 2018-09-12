@@ -22,6 +22,7 @@ class Place
   has_many :images, as: :imageable, autosave: true
   has_many :wishlist, as: :wishlistable
   has_many :reviews, as: :reviewable
+  has_many :tickets
   embeds_many :open_times
   has_and_belongs_to_many :tags
 end
