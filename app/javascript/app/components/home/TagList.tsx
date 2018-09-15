@@ -21,7 +21,7 @@ const TagList: React.SFC<Props> = ({ tags, settings }) => (
     <Slider {...settings}>
       {
         tags.map(tag => (
-          <TagCard key={tag.id} tag={tag} />
+          <TagCard key={tag.id} {...tag} />
         ))
       }
     </Slider>

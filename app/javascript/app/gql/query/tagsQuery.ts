@@ -5,6 +5,10 @@ query tags {
   tags {
     id
     name
+    image {
+      id
+      fileUrl
+    }
   }
 }
 `

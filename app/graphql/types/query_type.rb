@@ -18,7 +18,10 @@ module Types
     field :place, Types::PlaceType, null: false do
       argument :id, ID, required: true
     end
-    field :cities, [Types::CityType], null: false
+    field :cities, [Types::CityType], null: false do
+      argument :limit, Integer, required: false, default_value: 10
+      argument :featured, Boolean, required: false
+    end
     field :tags, [Types::TagType], null: false
 
     def user(id:)
@@ -33,8 +36,10 @@ module Types
       Place.with_status(:approved).find(id)
     end
 
-    def cities
-      City.all
+    def cities(limit:, featured:)
+      scope = City.all
+      scope = scope.where(featured: true) if featured
+      scope.limit(limit)
     end
 
     def tags

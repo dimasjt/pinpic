@@ -4,5 +4,6 @@ module Types
     field :name, String, null: false
 
     field :location, Types::CoordinateType, null: true
+    field :image, Types::ImageType, null: true
   end
 end

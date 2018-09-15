@@ -7,7 +7,7 @@ class Image
   field :width, type: Integer
   field :height, type: Integer
 
-  belongs_to :imageable, polymorphic: true
+  belongs_to :imageable, polymorphic: true, inverse_of: :comments
 
   validates :file, presence: true
 end

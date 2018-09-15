@@ -28,10 +28,15 @@ const CityList: React.SFC<Props> = ({ cities, settings }) => (
 )
 
 const enhance = compose(
-  graphql(citiesQuery, { name: 'citiesQuery'}),
+  graphql(citiesQuery, {
+    name: 'citiesQuery',
+    options: {
+      variables: { limit: 4, featured: true }
+    }
+  }),
   withProps({
     settings: {
-      infinte: true,
+      infinte: false,
       autoplay: false,
       slidesToShow: 4
     }

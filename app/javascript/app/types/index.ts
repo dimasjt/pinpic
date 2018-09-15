@@ -33,6 +33,7 @@ export interface Image {
 export interface City {
   id: string
   name: string
+  image: Image
   location: Coordinate
 }
 
@@ -56,4 +57,5 @@ export interface Review {
 export interface Tag {
   id: string
   name: string
+  image: Image
 }

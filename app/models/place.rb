@@ -19,10 +19,12 @@ class Place
 
   belongs_to :user
   belongs_to :city
-  has_many :images, as: :imageable, autosave: true
+  has_many :images, as: :imageable, inverse_of: :imageable, autosave: true
   has_many :wishlist, as: :wishlistable
   has_many :reviews, as: :reviewable
   has_many :tickets
   embeds_many :open_times
   has_and_belongs_to_many :tags
+
+  accepts_nested_attributes_for :open_times, :tickets
 end
