@@ -1,13 +1,16 @@
 import * as React from 'react'
-import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
+import {
+  Container
+} from 'reactstrap'
 
-class HomeContainer extends React.Component<{}> {
-  render() {
-    return (
-      <div>HomeContainer</div>
-    )
-  }
-}
+import TagList from '@components/home/TagList'
+import CityList from '@components/home/CityList';
+
+const HomeContainer: React.SFC<{}> = () => (
+  <Container>
+    <TagList />
+    <CityList />
+  </Container>
+)
 
 export default HomeContainer

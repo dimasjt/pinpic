@@ -10,10 +10,13 @@ cities.each do |city|
 end
 
 tags = [
-  "outdoor",
-  "pool",
-  "lake",
-  "mountain"
+  "Outdoor",
+  "Pool",
+  "Lake",
+  "Mountain",
+  "Beach",
+  "Forest",
+  "City"
 ]
 
 tags.each do |tag|

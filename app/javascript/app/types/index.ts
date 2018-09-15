@@ -52,3 +52,8 @@ export interface Review {
   rating: number
   user?: User
 }
+
+export interface Tag {
+  id: string
+  name: string
+}
