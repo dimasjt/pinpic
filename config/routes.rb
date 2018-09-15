@@ -1,6 +1,7 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => "/admin", as: "rails_admin"
   namespace :api, defaults: { format: :json } do
     post "/upload", to: "upload#create"
     post "/graphql", to: "graphql#execute"

@@ -35,6 +35,8 @@ gem 'sidekiq'
 gem 'activejob-status'
 gem 'redis-rails'
 gem 'koala', '~> 3.0.0'
+gem 'rails_admin', '~> 1.3'
+gem 'kaminari-mongoid'
 
 gem 'bootstrap'
 
