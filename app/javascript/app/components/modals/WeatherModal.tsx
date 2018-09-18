@@ -7,7 +7,9 @@ import {
   Button,
 } from 'reactstrap'
 
-const WeatherModal = ({ toggle, isOpen }) => (
+import WeatherList from '@components/weathers/WeatherList';
+
+const WeatherModal = ({ toggle, isOpen, weathers }) => (
   <Modal
     isOpen={isOpen}
     toggle={toggle}
@@ -15,7 +17,7 @@ const WeatherModal = ({ toggle, isOpen }) => (
   >
     <ModalHeader toggle={toggle}>Place Weather</ModalHeader>
     <ModalBody>
-      lorem
+      <WeatherList weathers={weathers} />
     </ModalBody>
     <ModalFooter>
       <Button onClick={toggle}>Close</Button>
