@@ -37,10 +37,10 @@ gem 'redis-rails'
 gem 'koala', '~> 3.0.0'
 gem 'rails_admin', '~> 1.3'
 gem 'kaminari-mongoid'
+gem 'hash_dot'
 
 gem 'bootstrap'
 
-gem 'forecast_io'
 gem 'money-rails'
 
 group :development, :test do

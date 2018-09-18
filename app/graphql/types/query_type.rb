@@ -1,15 +1,5 @@
 module Types
   class QueryType < Types::BaseObject
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
-
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
-    end
-
     field :user, Types::UserType, null: false do
       argument :id, ID, required: true
     end
@@ -23,6 +13,9 @@ module Types
       argument :featured, Boolean, required: false
     end
     field :tags, [Types::TagType], null: false
+    field :place_weather, Types::WeatherType, null: false do
+      argument :place_id, ID, required: true
+    end
 
     def user(id:)
       User.find(id)
@@ -44,6 +37,12 @@ module Types
 
     def tags
       Tag.all
+    end
+
+    def place_weather(place_id:)
+      place = Place.with_status(:approved).find(place_id)
+      weather = WeatherPlace.new(place).weather
+      weather || GraphQL::ExecutionError.new("Can't fetch weather")
     end
 
   end

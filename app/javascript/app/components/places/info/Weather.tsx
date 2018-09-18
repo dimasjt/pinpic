@@ -4,14 +4,34 @@ import {
   CardTitle,
   CardText,
 } from 'reactstrap'
+import { withStateHandlers, compose } from 'recompose'
 
-const Weather = () => (
-  <Card body>
-    <CardTitle>Weather</CardTitle>
-    <CardText>
-      Sat-Sun Cloudly
-    </CardText>
-  </Card>
+import WeatherModal from '@components/modals/WeatherModal'
+
+interface Props {
+  toggle: any
+  isOpen: boolean
+}
+
+const Weather: React.SFC<Props> = ({ toggle, isOpen }) => (
+  <div>
+    <Card body onClick={toggle}>
+      <CardTitle>Weather</CardTitle>
+      <CardText>
+        Sat-Sun Cloudly
+      </CardText>
+    </Card>
+
+    <WeatherModal {...{toggle, isOpen}} />
+  </div>
 )
 
-export default Weather
+const enhance = compose(
+  withStateHandlers({
+    isOpen: false,
+  }, {
+    toggle: ({ isOpen }) => () => ({ isOpen: !isOpen })
+  })
+)
+
+export default enhance(Weather)
