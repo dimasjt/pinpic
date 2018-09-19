@@ -7,37 +7,78 @@ import {
   Col,
 } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import { FiClock, FiMapPin } from 'react-icons/fi'
+import { FiMapPin } from 'react-icons/fi'
+import styled from 'styled-components'
 
 import Rating from '@components/common/Rating'
 
 import ImageSlider from './card/ImageSlider'
 
+const StyledLink = styled(Link)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+`
+
+const StyledCard = styled(Card)`
+  display: flex !important;
+  flex-direction: row !important;
+  border-radius: 0 !important;
+  transition: 0.4s;
+
+  &:hover {
+    box-shadow: 0px 1px 8px 0px #ccc;
+  }
+`
+
+const Title = styled(CardTitle)`
+  color: #333;
+`
+
+const Description =  styled(CardText)`
+  color: #777;
+`
+
+const StyledCardBody = styled(CardBody)`
+  padding: 20px;
+  width: 60%;
+`
+
+const PlaceInfo = styled(CardText)`
+  margin: 0;
+`
+
+const PlaceLocation = styled.small`
+  margin-right: 10px;
+`
+
 const PlaceCard = ({ place, size }) => (
-  <Col md={size.md} style={{ marginBottom: 10 }}>
-    <Card to={`/places/${place.slug}`} style={{ display: 'flex', flexDirection: 'row', borderRadius: 0 }}>
+  <Col md={size.md} style={{ marginBottom: 10 }} className="place-card">
+    <StyledCard>
+      <StyledLink to={`/places/${place.slug}`} />
       <ImageSlider images={place.images} />
-      <CardBody style={{ width: '60%' }}>
+      <StyledCardBody>
         <Link to={`/places/${place.id}`}>
-          <CardTitle>{place.name}</CardTitle>
+          <Title>{place.name}</Title>
         </Link>
-        <CardText>{place.description.substring(0, 120)}</CardText>
-        <CardText>
-          <small>
+        <Description>
+          {place.description.substring(0, 100)}
+        </Description>
+        <PlaceInfo>
+          <PlaceLocation>
             <FiMapPin /> {place.city.name}
-          </small>
-          {' '}
-          <small>
-            <FiClock /> 10AM - 21PM
-          </small>
-        </CardText>
-        <Rating
-          initialRating={place.averageRating}
-          size={20}
-          readonly
-        />
-      </CardBody>
-    </Card>
+          </PlaceLocation>
+
+          <Rating
+            initialRating={place.averageRating}
+            size={20}
+            readonly
+          />
+        </PlaceInfo>
+      </StyledCardBody>
+    </StyledCard>
   </Col>
 )
 

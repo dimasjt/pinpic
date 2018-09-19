@@ -19,10 +19,10 @@ class Place
 
   belongs_to :user
   belongs_to :city
-  has_many :images, as: :imageable, inverse_of: :imageable, autosave: true
-  has_many :wishlist, as: :wishlistable
-  has_many :reviews, as: :reviewable
-  has_many :tickets
+  has_many :images, as: :imageable, inverse_of: :imageable, autosave: true, dependent: :destroy
+  has_many :wishlist, as: :wishlistable, dependent: :destroy
+  has_many :reviews, as: :reviewable, dependent: :destroy
+  has_many :tickets, dependent: :destroy
   embeds_many :open_times
   has_and_belongs_to_many :tags
 

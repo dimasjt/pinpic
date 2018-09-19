@@ -1,0 +1,22 @@
+.place-card {
+  .slick-prev {
+    left: 3px !important;
+    z-index: 1;
+  }
+
+  .slick-next {
+    right: 3px !important;
+  }
+
+  .slick-dots {
+    bottom: 0 !important;
+
+    li button:before {
+      color: white !important;
+    }
+
+    li.slick-active button:before {
+      color: white !important;
+    }
+  }
+}
