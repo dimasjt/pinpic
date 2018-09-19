@@ -6,17 +6,12 @@ import {
   Form,
 } from 'reactstrap'
 
-import Input from '@components/forms/Input'
+import CitiesCard from './cards/CitiesCard'
 
 const SearchSideBar = () => (
-  <Card>
-    <CardHeader>Search</CardHeader>
-    <CardBody>
-      <Form>
-        {/* <Input /> */}
-      </Form>
-    </CardBody>
-  </Card>
+  <div>
+    <CitiesCard />
+  </div>
 )
 
 export default SearchSideBar
