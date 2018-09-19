@@ -48,6 +48,8 @@ const StyledCardBody = styled(CardBody)`
 
 const PlaceInfo = styled(CardText)`
   margin: 0;
+  position: absolute;
+  bottom: 15px;
 `
 
 const PlaceLocation = styled.small`
@@ -60,9 +62,7 @@ const PlaceCard = ({ place, size }) => (
       <StyledLink to={`/places/${place.slug}`} />
       <ImageSlider images={place.images} />
       <StyledCardBody>
-        <Link to={`/places/${place.id}`}>
-          <Title>{place.name}</Title>
-        </Link>
+        <Title>{place.name}</Title>
         <Description>
           {place.description.substring(0, 100)}
         </Description>

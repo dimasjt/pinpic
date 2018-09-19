@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
 import Alert from 'react-s-alert'
+import styled from 'styled-components'
 
 import HomeContainer from '@containers/HomeContainer'
 import LoginContainer from '@containers/auth/LoginContainer'
@@ -19,6 +20,11 @@ import PrivateRoute from "@components/auth/PrivateRoute"
 import { withConsumer } from '@context/MainContext'
 import { MainContextProps } from '@types'
 import history from '@utils/history'
+
+const Container = styled.div`
+  padding-top: 56px;
+  background-color: #f8f9fa;
+`
 
 class Routes extends React.Component<MainContextProps> {
   state = {
@@ -39,7 +45,7 @@ class Routes extends React.Component<MainContextProps> {
         <div>
           <Navbar loggedIn={this.props.loggedIn} />
 
-          <div style={{ paddingTop: 80 }}>
+          <Container>
             <Switch>
               <Route exact path="/" component={HomeContainer} />
               <Route path="/login" component={LoginContainer} />
@@ -51,7 +57,7 @@ class Routes extends React.Component<MainContextProps> {
               <Route path="/places/:id" component={PlaceShowContainer} />
               <PrivateRoute path="/wishlists" component={WishlistContainer} />
             </Switch>
-          </div>
+          </Container>
 
           <Footer />
           <Alert

@@ -7,6 +7,8 @@ import { Provider } from '@context/MainContext'
 
 import client from '@gql/client'
 
+import './styles/main'
+
 const appId = process.env.FACEBOOK_APP_ID
 
 const App = () => (

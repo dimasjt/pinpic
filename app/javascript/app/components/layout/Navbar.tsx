@@ -5,6 +5,7 @@ import {
   NavbarToggler,
   Nav,
 } from 'reactstrap'
+import styled from 'styled-components'
 
 import { NavItemLink, NavbarBrandLink } from '@components/common/Link'
 import LogoutLink from '@components/auth/LogoutLink'
@@ -16,6 +17,11 @@ interface Props {
 interface State {
   isOpen: boolean
 }
+
+const StyledNavbar = styled(Navbar)`
+  background-color: #fff;
+  box-shadow: 0 1px 3px 0 #eee;
+`
 
 class AppNavbar extends React.Component<Props, State> {
   constructor(props: any) {
@@ -66,7 +72,7 @@ class AppNavbar extends React.Component<Props, State> {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md" fixed="top">
+        <StyledNavbar light expand="md" fixed="top">
           <div className="container">
             <NavbarBrandLink to="/">PinPic</NavbarBrandLink>
             <NavbarToggler onClick={this.toggle} />
@@ -76,7 +82,7 @@ class AppNavbar extends React.Component<Props, State> {
               </Nav>
             </Collapse>
           </div>
-        </Navbar>
+        </StyledNavbar>
       </div>
     )
   }
