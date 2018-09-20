@@ -13,7 +13,7 @@ interface InputProps {
   type: any
   placeholder?: string
   value: string
-  errors: any[]
+  errors?: any[]
   label: string
   autoComplete?: string
 }

@@ -1,27 +1,36 @@
 import * as React from 'react'
-import { compose, graphql } from 'react-apollo'
+import { compose, graphql, QueryProps } from 'react-apollo'
+import { branch, renderComponent } from 'recompose'
 
 import { Place } from '@types'
-import searchPlacesQuery from '@gql/query/searchPlacesQuery';
-import Loading from '@components/common/Loading';
+import searchPlacesQuery from '@gql/query/searchPlacesQuery'
+import Loading from '@components/common/Loading'
 
 const Context = React.createContext({})
 
-interface Props {
+interface SearchContextProps {
   children: JSX.Element
-  searchPlacesQuery: any
+  searchPlacesQuery: QueryProps & Response
 }
 
-interface State {
+interface SearchContextState {
   places: Place[]
+  cityIds: string[]
+  [field: string]: any
 }
 
-class SearchContext extends React.Component<Props, State> {
+interface VariablesSearch {
+  limit: number
+  cityIds: string[]
+}
+
+class SearchContext extends React.Component<SearchContextProps, SearchContextState> {
   constructor(props) {
     super(props)
 
     this.state = {
       places: props.searchPlacesQuery.searchPlaces,
+      cityIds: [],
     }
   }
 
@@ -33,12 +42,28 @@ class SearchContext extends React.Component<Props, State> {
     }
   }
 
-  render() {
-    if (this.props.searchPlacesQuery.loading)
-      return <Loading />
+  setFilter = (field, value) => (
+    this.setState({ [field]: value })
+  )
 
+  setCities = (cityId: string) => {
+    this.setState(({ cityIds }) => {
+      const index = cityIds.findIndex(id => id === cityId)
+      if (index > 0) {
+        cityIds.splice(index, 1)
+      } else {
+        cityIds.push(cityId)
+      }
+
+      return { cityIds }
+    })
+  }
+
+  render() {
     const value = {
-      places: this.state.places
+      places: this.state.places,
+      setFilter: this.setFilter,
+      setCities: this.setCities,
     }
 
     return (
@@ -56,7 +81,11 @@ const withConsumer = (Component) => (props: any) => (
 )
 
 const Provider = compose(
-  graphql(searchPlacesQuery, { name: 'searchPlacesQuery' }),
+  graphql<{}, Response, VariablesSearch>(searchPlacesQuery, { name: 'searchPlacesQuery' }),
+  branch(
+    ({ searchPlacesQuery }) => searchPlacesQuery.loading,
+    renderComponent(Loading)
+  )
 )(SearchContext)
 
 export {

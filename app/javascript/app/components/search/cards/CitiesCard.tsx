@@ -1,43 +1,45 @@
 import * as React from 'react'
-import { compose, branch, renderNothing, mapProps } from 'recompose'
+import { compose, branch, renderNothing, mapProps, withStateHandlers } from 'recompose'
 import { graphql } from 'react-apollo'
 
 import CollapseCard from '@components/cards/CollapseCard'
-import Checkbox from '@components/forms/Checkbox'
+import CitiesList from './cities/CitiesList'
+import SearchCity from './cities/SearchCity'
 import citiesQuery from '@gql/query/citiesQuery'
+import { withConsumer } from '@context/SearchContext'
 
 import { City } from '@types'
 
 interface CitiesCardProps {
   cities: City[]
+  query: string
+  setQuery(query: string): any
+  setCities(cityId: string): any
 }
 
-const CitiesCard: React.SFC<CitiesCardProps> = ({ cities }) => (
+const CitiesCard: React.SFC<CitiesCardProps> = ({ cities, query, setQuery, setCities }) => (
   <CollapseCard title="Select City">
-    <div style={{ paddingLeft: 20 }}>
-      {
-        cities.map(city => (
-          <Checkbox
-            key={city.id}
-            label={city.name}
-            onChange={(value) => console.log('value', value)}
-            value={city.id}
-          />
-        ))
-      }
-    </div>
+    <SearchCity {...{query, setQuery}} />
+    <CitiesList {...{query, cities, setCities}} />
   </CollapseCard>
 )
 
 const enhance = compose(
+  withConsumer,
   graphql(citiesQuery, { name: 'citiesQuery' }),
   branch(
     ({ citiesQuery }) => citiesQuery.loading,
     renderNothing,
   ),
-  mapProps(({ citiesQuery }) => ({
+  mapProps(({ citiesQuery, ...rest }) => ({
+    ...rest,
     cities: citiesQuery.cities
-  }))
+  })),
+  withStateHandlers({
+    query: '',
+  }, {
+    setQuery: () => (query) => ({ query })
+  })
 )
 
 export default enhance(CitiesCard)

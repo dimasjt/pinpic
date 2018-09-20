@@ -4,7 +4,9 @@ module Types
       argument :id, ID, required: true
     end
 
-    field :search_places, [Types::PlaceType], null: false
+    field :search_places, [Types::PlaceType], null: false do
+      argument :limit, Integer, required: false, default_value: 20
+    end
     field :place, Types::PlaceType, null: false do
       argument :id, ID, required: true
     end
@@ -21,8 +23,8 @@ module Types
       User.find(id)
     end
 
-    def search_places
-      Place.with_status(:approved).sort(average_rating: -1)
+    def search_places(limit:)
+      Place.with_status(:approved).sort(average_rating: -1).limit(limit)
     end
 
     def place(id:)

@@ -7,10 +7,11 @@ import {
 } from 'reactstrap'
 import styled from 'styled-components'
 import { withStateHandlers, StateHandler, StateHandlerMap } from 'recompose'
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
 
 interface CollapseCardProps {
   title: string
-  children: JSX.Element
+  children: JSX.Element | JSX.Element[]
 }
 
 interface StateProps {
@@ -34,6 +35,11 @@ const CollapseCard: React.SFC<EnhancedCollapseCardProps> = ({ toggle, isOpen, ti
   <Card>
     <Title onClick={toggle}>
       {title}
+      <span style={{float: 'right'}}>
+        {
+          isOpen ? <FiChevronDown /> : <FiChevronUp />
+        }
+      </span>
     </Title>
     <Collapse isOpen={isOpen}>
       <CardBody>
